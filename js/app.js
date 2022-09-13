@@ -20,7 +20,9 @@ const getRandomPhraseAsArray = arr => {
 
 // adds the letters of a string to the display
 const addPhraseToDisplay = arr => {
-
+    const randomArr = getRandomPhraseAsArray(arr);
+    const splitArr = randomArr.toString().split('');
+    return splitArr;
 };
 
 // check if a letter is in the phrase
