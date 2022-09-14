@@ -2,11 +2,11 @@ const qwerty = document.querySelector('#qwerty');
 const phrase = document.querySelector('#phrase');
 const startButton = document.querySelector('.btn__reset');
 const phrases = [
-    ['Random phrase 1'],
-    ['Random phrase 2'],
-    ['Random phrase 3'],
-    ['Random phrase 4'],
-    ['Random phrase 5'],
+    ['This is my first phrase'],
+    ['Me second'],
+    ['O ya ya number three'],
+    ['one two three four'],
+    ['And my last one is mr five'],
 ];
 let missed = 0;
 
@@ -20,9 +20,22 @@ const getRandomPhraseAsArray = arr => {
 
 // adds the letters of a string to the display
 const addPhraseToDisplay = arr => {
+    const phraseUL = document.querySelector('#phrase ul');
     const randomArr = getRandomPhraseAsArray(arr);
     const splitArr = randomArr.toString().split('');
-    return splitArr;
+    
+    for (let i = 0; i < splitArr.length; i++) {
+        const li = document.createElement('li');
+        li.innerHTML = `${splitArr[i]}`;
+
+        if (splitArr[i] != ' ') {
+            li.className = 'letter';
+        } else {
+            li.className = 'space';
+        }
+
+        phraseUL.appendChild(li);
+    }
 };
 
 // check if a letter is in the phrase
@@ -39,6 +52,8 @@ const checkWin = () => {
 startButton.addEventListener('click', () => {
     const overlay = document.querySelector('#overlay');
     overlay.style.display = 'none';
+
+    addPhraseToDisplay(phrases);
 });
 
 // listen for the onscreen keyboard to be clicked
