@@ -3,7 +3,7 @@ const phrase = document.querySelector('#phrase');
 const startButton = document.querySelector('.btn__reset');
 const phrases = [
     ['This is my first phrase'],
-    ['Me second'],
+    ['eee ee ee e eeee'],
     ['O ya ya number three'],
     ['one two three four'],
     ['And my last one is mr five'],
@@ -40,17 +40,18 @@ const addPhraseToDisplay = arr => {
 
 // check if a letter is in the phrase
 const checkLetter = button => {
-    let checkLetter = document.getElementsByClassName('letter');
+    const checkLetter = document.querySelectorAll('.letter');
     let match = null;
     
     for (let i = 0; i < checkLetter.length; i++) {
         let letter = checkLetter[i];
 
-        if (button === letter.innerHTML) {
+        if (button === letter.innerText) {
             letter.className = 'show';
             match = button;
         } else {
-            console.log(`Clicked: ${button} and letter is ${letter.innerHTML}`);
+            // console.log(`Clicked: ${button} and letter is ${letter.innerHTML}`);
+            const heart = document.querySelectorAll('img');
         }
         
     }
@@ -82,7 +83,7 @@ qwerty.addEventListener('click', e => {
         } else {
             
             btn[i].className = 'chosen';
-            let test = checkLetter(btn[i].textContent.toUpperCase());
+            const test = checkLetter(btn[i].innerText.toUpperCase());
         }
         
     }
