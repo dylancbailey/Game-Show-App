@@ -22,7 +22,7 @@ const getRandomPhraseAsArray = arr => {
 const addPhraseToDisplay = arr => {
     const phraseUL = document.querySelector('#phrase ul');
     const randomArr = getRandomPhraseAsArray(arr);
-    const splitArr = randomArr.toString().split('');
+    const splitArr = randomArr.toString().toUpperCase().split('');
     
     for (let i = 0; i < splitArr.length; i++) {
         const li = document.createElement('li');
@@ -40,6 +40,19 @@ const addPhraseToDisplay = arr => {
 
 // check if a letter is in the phrase
 const checkLetter = button => {
+    const checkLetter = document.getElementsByClassName('letter');
+    const match = null;
+    
+    for (let i = 0; i < checkLetter.length; i++) {
+        
+        if (button.textContent === checkLetter[i]) {
+            checkLetter[i].className = 'show';
+            match = button.textContent;
+        }
+        
+    }
+
+    return match;
 
 };
 
