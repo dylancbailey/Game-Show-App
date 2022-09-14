@@ -49,10 +49,7 @@ const checkLetter = button => {
         if (button === letter.innerText) {
             letter.className = 'show';
             match = button;
-        } else {
-            // console.log(`Clicked: ${button} and letter is ${letter.innerHTML}`);
-            const heart = document.querySelectorAll('img');
-        }
+        } 
         
     }
     return match;
@@ -84,8 +81,14 @@ qwerty.addEventListener('click', e => {
             
             btn[i].className = 'chosen';
             const test = checkLetter(btn[i].innerText.toUpperCase());
+
+            if (test === null) {
+                missed++;
+            }
         }
         
     }
+
+    console.log(`You missed ${missed} letters`);
 
 });
