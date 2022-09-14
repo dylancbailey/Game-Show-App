@@ -40,18 +40,20 @@ const addPhraseToDisplay = arr => {
 
 // check if a letter is in the phrase
 const checkLetter = button => {
-    const checkLetter = document.getElementsByClassName('letter');
-    const match = null;
+    let checkLetter = document.getElementsByClassName('letter');
+    let match = null;
     
     for (let i = 0; i < checkLetter.length; i++) {
-        
-        if (button.textContent === checkLetter[i]) {
-            checkLetter[i].className = 'show';
-            match = button.textContent;
+        let letter = checkLetter[i];
+
+        if (button === letter.innerHTML) {
+            letter.className = 'show';
+            match = button;
+        } else {
+            console.log(`Clicked: ${button} and letter is ${letter.innerHTML}`);
         }
         
     }
-
     return match;
 
 };
@@ -71,5 +73,18 @@ startButton.addEventListener('click', () => {
 
 // listen for the onscreen keyboard to be clicked
 qwerty.addEventListener('click', e => {
+    const btn = document.querySelectorAll('button');
+
+    for (let i = 0; i < btn.length; i++) {
+        
+        if (e.target != btn[i] || btn[i].className === 'chosen') {
+            // console.log('Not a button or proper class');
+        } else {
+            
+            btn[i].className = 'chosen';
+            let test = checkLetter(btn[i].textContent.toUpperCase());
+        }
+        
+    }
 
 });
