@@ -84,11 +84,12 @@ qwerty.addEventListener('click', e => {
 
             if (test === null) {
                 missed++;
+                console.log(`You missed: ${missed} time(s)`);
+            } else  {
+                console.log('Correct!');
             }
         }
         
     }
-
-    console.log(`You missed ${missed} letters`);
 
 });
