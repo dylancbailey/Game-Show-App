@@ -49,7 +49,8 @@ const checkLetter = button => {
         if (button === letter.innerText) {
             letter.className = 'show';
             match = button;
-        } 
+        }
+
         
     }
     return match;
@@ -60,6 +61,19 @@ const checkLetter = button => {
 const checkWin = () => {
 
 };
+
+// remove heart
+const heartLost = (missed) => {
+    const hearts = document.querySelectorAll('.tries img');
+
+    for (let i = 0; i < hearts.length; i++) {
+        const heart = hearts[i];
+
+        if (missed === i) {
+            heart.src = 'images/lostHeart.png';
+        }
+    }
+}
 
 // listen for the start game button to be pressed
 startButton.addEventListener('click', () => {
@@ -83,6 +97,7 @@ qwerty.addEventListener('click', e => {
             const test = checkLetter(btn[i].innerText.toUpperCase());
 
             if (test === null) {
+                heartLost(missed);
                 missed++;
                 console.log(`You missed: ${missed} time(s)`);
             } else  {
