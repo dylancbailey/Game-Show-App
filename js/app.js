@@ -50,15 +50,9 @@ const checkLetter = button => {
             letter.className = 'show';
             match = button;
         }
-
         
     }
     return match;
-
-};
-
-// check if the game been won or lost
-const checkWin = () => {
 
 };
 
@@ -75,6 +69,12 @@ const heartLost = (missed) => {
     }
 }
 
+// check if the game been won or lost
+const checkWin = () => {
+
+};
+
+
 // listen for the start game button to be pressed
 startButton.addEventListener('click', () => {
     const overlay = document.querySelector('#overlay');
@@ -89,7 +89,7 @@ qwerty.addEventListener('click', e => {
 
     for (let i = 0; i < btn.length; i++) {
         
-        if (e.target != btn[i] || btn[i].className === 'chosen') {
+        if (e.target !== btn[i] || btn[i].className === 'chosen') {
             // console.log('Not a button or proper class');
         } else {
             
