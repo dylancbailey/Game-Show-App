@@ -109,18 +109,9 @@ resetButton.addEventListener('click', () => {
     const li = document.querySelectorAll('#phrase ul > li');
     const hearts = document.querySelectorAll('.tries img');
 
-    for (let i = 0; i < btn.length; i++) {
-        btn[i].classList.remove('chosen');
-    }
-
-    for (let i = 0; i < li.length; i++) {
-        li[i].parentNode.removeChild(li[i]);
-    }
-
-    for (let i = 0; i < hearts.length; i++) {
-        const heart = hearts[i];
-        heart.src = 'images/liveHeart.png';
-    }
+    btn.forEach(e => { e.classList.remove('chosen'); });
+    li.forEach(e => { e.parentNode.removeChild(e) });
+    hearts.forEach(e => { e.src = 'images/liveHeart.png' });
 
     overlay.style.display = 'none';
     resetButton.style.display = 'none';
@@ -130,13 +121,14 @@ resetButton.addEventListener('click', () => {
 });
 
 // listen for the onscreen keyboard to be clicked
-qwerty.addEventListener('click', e => {
+qwerty.addEventListener('click', (e) => {
     const btn = document.querySelectorAll('button');
 
     for (let i = 0; i < btn.length; i++) {
         
         if (e.target !== btn[i] || btn[i].className === 'chosen') {
             // console.log('Not a button or proper class');
+            // console.log(e.target);
         } else {
             
             btn[i].className = 'chosen';
