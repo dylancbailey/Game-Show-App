@@ -3,11 +3,11 @@ const phrase = document.querySelector('#phrase');
 const startButton = document.querySelector('.btn__reset');
 const resetButton = document.querySelector('.btn__try-again');
 const phrases = [
-    ['one'],
-    ['one one'],
-    ['one'],
-    ['one'],
-    ['one'],
+    ['Bite the bullet'],
+    ['Curiosity killed the cat'],
+    ['Raining cats and dogs'],
+    ['A Piece of Cake'],
+    ['Two Peas In a Pod'],
 ];
 let missed = 0;
 resetButton.style.display = 'none';
@@ -73,7 +73,6 @@ const heartLost = (missed) => {
 
 // check if the game been won or lost
 const checkWin = () => {
-
     const overlay = document.querySelector('#overlay');
     const title = document.querySelector('.title');
     const letters = document.querySelectorAll('.letter');
@@ -107,8 +106,8 @@ startButton.addEventListener('click', () => {
 resetButton.addEventListener('click', () => {
     const overlay = document.querySelector('#overlay');
     const btn = document.querySelectorAll('.chosen');
-    const letters = document.querySelectorAll('.show');
-    const li = document.querySelectorAll('li');
+    const li = document.querySelectorAll('#phrase ul > li');
+    const hearts = document.querySelectorAll('.tries img');
 
     for (let i = 0; i < btn.length; i++) {
         btn[i].classList.remove('chosen');
@@ -116,14 +115,16 @@ resetButton.addEventListener('click', () => {
 
     for (let i = 0; i < li.length; i++) {
         li[i].parentNode.removeChild(li[i]);
+    }
 
+    for (let i = 0; i < hearts.length; i++) {
+        const heart = hearts[i];
+        heart.src = 'images/liveHeart.png';
     }
 
     overlay.style.display = 'none';
     resetButton.style.display = 'none';
-
     missed = 0;
-
 
     addPhraseToDisplay(phrases);
 });
