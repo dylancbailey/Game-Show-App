@@ -53,7 +53,7 @@ resetButton.style.display = 'none';
 // return a random phrase from an array
 const getRandomPhraseAsArray = arr => {
     const header = document.querySelector('.header');
-    const randomNumber = Math.floor(Math.random() * 10);
+    const randomNumber = Math.floor(Math.random() * 11);
     const randomArr = arr[randomNumber];
     const randomAnswer = randomArr.answer;
     const randomQuestion = randomArr.question;
@@ -128,12 +128,13 @@ const checkWin = () => {
             title.innerText = 'You win!';
         }, 2000);
     } else if (missed > 4) {
-        overlay.style.display = 'flex';
-        overlay.classList.add('lose');
-        resetButton.style.display = 'block';
-        title.innerText = 'You lose :(';
+        setTimeout( () => {
+            overlay.style.display = 'flex';
+            overlay.classList.add('lose');
+            resetButton.style.display = 'block';
+            title.innerText = 'You lose :(';
+        }, 500)
     }
-
 };
 
 
@@ -142,6 +143,7 @@ startButton.addEventListener('click', () => {
     const overlay = document.querySelector('#overlay');
 
     overlay.style.display = 'none';
+    overlay.classList.remove('start');
     startButton.style.display = 'none';
 
     addPhraseToDisplay(phrases);
@@ -156,6 +158,7 @@ resetButton.addEventListener('click', () => {
 
     btn.forEach(e => {
         e.classList.remove('chosen');
+        e.classList.remove('wrong');
     });
     li.forEach(e => {
         e.parentNode.removeChild(e)
@@ -165,6 +168,8 @@ resetButton.addEventListener('click', () => {
     });
 
     overlay.style.display = 'none';
+    overlay.classList.remove('win');
+    overlay.classList.remove('lose');
     resetButton.style.display = 'none';
     missed = 0;
 
@@ -185,7 +190,10 @@ qwerty.addEventListener('click', (e) => {
             const test = checkLetter(btn[i].innerText.toUpperCase());
             btn[i].classList.add('chosen');
 
+            // Not shaking when RESTATING GAME FIX IT
             if (test === null) {
+                btn[i].classList.add('wrong');
+                btn[i].style.animation = 'shake 0.5s';
                 heartLost(missed);
                 missed++;
             }
