@@ -1,5 +1,4 @@
 const qwerty = document.querySelector('#qwerty');
-const phrase = document.querySelector('#phrase');
 const startButton = document.querySelector('.btn__reset');
 const resetButton = document.querySelector('.btn__try-again');
 const phrases = [
@@ -14,7 +13,6 @@ resetButton.style.display = 'none';
 
 // return a random phrase from an array
 const getRandomPhraseAsArray = arr => {
-    const arrLength = arr.length;
     const randomNumber = Math.floor(Math.random() * 5);
     const randomArr = arr[randomNumber];
     return randomArr;
@@ -25,7 +23,7 @@ const addPhraseToDisplay = arr => {
     const phraseUL = document.querySelector('#phrase ul');
     const randomArr = getRandomPhraseAsArray(arr);
     const splitArr = randomArr.toString().toUpperCase().split('');
-    
+
     for (let i = 0; i < splitArr.length; i++) {
         const li = document.createElement('li');
         li.innerHTML = `${splitArr[i]}`;
@@ -44,7 +42,7 @@ const addPhraseToDisplay = arr => {
 const checkLetter = button => {
     const checkLetter = document.querySelectorAll('.letter');
     let match = null;
-    
+
     for (let i = 0; i < checkLetter.length; i++) {
         let letter = checkLetter[i];
 
@@ -52,7 +50,7 @@ const checkLetter = button => {
             letter.className = 'show';
             match = button;
         }
-        
+
     }
     return match;
 
@@ -109,9 +107,15 @@ resetButton.addEventListener('click', () => {
     const li = document.querySelectorAll('#phrase ul > li');
     const hearts = document.querySelectorAll('.tries img');
 
-    btn.forEach(e => { e.classList.remove('chosen'); });
-    li.forEach(e => { e.parentNode.removeChild(e) });
-    hearts.forEach(e => { e.src = 'images/liveHeart.png' });
+    btn.forEach(e => {
+        e.classList.remove('chosen');
+    });
+    li.forEach(e => {
+        e.parentNode.removeChild(e)
+    });
+    hearts.forEach(e => {
+        e.src = 'images/liveHeart.png'
+    });
 
     overlay.style.display = 'none';
     resetButton.style.display = 'none';
@@ -125,21 +129,21 @@ qwerty.addEventListener('click', (e) => {
     const btn = document.querySelectorAll('button');
 
     for (let i = 0; i < btn.length; i++) {
-        
+
         if (e.target !== btn[i] || btn[i].className === 'chosen') {
             // console.log('Not a button or proper class');
             // console.log(e.target);
         } else {
             
-            btn[i].className = 'chosen';
             const test = checkLetter(btn[i].innerText.toUpperCase());
+            btn[i].className = 'chosen';
 
             if (test === null) {
                 heartLost(missed);
                 missed++;
-            } 
+            }
         }
-  
+
     }
 
     checkWin();
