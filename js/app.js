@@ -2,7 +2,7 @@ const qwerty = document.querySelector('#qwerty');
 const phrase = document.querySelector('#phrase');
 const startButton = document.querySelector('.btn__reset');
 const phrases = [
-    ['This is my first phrase'],
+    ['Easy one'],
     ['eee ee ee e eeee'],
     ['O ya ya number three'],
     ['one two three four'],
@@ -72,6 +72,20 @@ const heartLost = (missed) => {
 // check if the game been won or lost
 const checkWin = () => {
 
+    const overlay = document.querySelector('#overlay');
+    const title = document.querySelector('.title');
+    const letters = document.querySelectorAll('.letter');
+
+    if (letters.length === 0) {
+        overlay.style.display = 'flex';
+        overlay.className = 'win';
+        title.innerText = 'You win!';
+    } else if (missed > 4) {
+        overlay.style.display = 'flex';
+        overlay.className = 'lose';
+        title.innerText = 'You lose :(';
+    }
+
 };
 
 
@@ -104,7 +118,9 @@ qwerty.addEventListener('click', e => {
                 console.log('Correct!');
             }
         }
-        
+  
     }
+
+    checkWin();
 
 });
