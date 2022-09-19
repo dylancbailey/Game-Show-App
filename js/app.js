@@ -1,13 +1,6 @@
 const qwerty = document.querySelector('#qwerty');
 const startButton = document.querySelector('.btn__reset');
 const resetButton = document.querySelector('.btn__try-again');
-// const phrases = [
-//     ['Bite the bullet'],
-//     ['Curiosity killed the cat'],
-//     ['Raining cats and dogs'],
-//     ['A Piece of Cake'],
-//     ['Two Peas In a Pod'],
-// ];
 const phrases = [
     {
         question: '🧽🟨👖',
@@ -52,7 +45,7 @@ const phrases = [
     {
         question: '🧑‍🔬💊🤷🏻‍♂️🚐',
         answer: 'Breaking Bad'
-    }
+    },
 ];
 let missed = 0;
 resetButton.style.display = 'none';
@@ -105,7 +98,6 @@ const checkLetter = button => {
 
     }
     return match;
-
 };
 
 // remove heart
