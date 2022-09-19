@@ -74,9 +74,9 @@ const addPhraseToDisplay = arr => {
         li.innerHTML = `${splitArr[i]}`;
 
         if (splitArr[i] != ' ') {
-            li.className = 'letter';
+            li.classList.add('letter');
         } else {
-            li.className = 'space';
+            li.classList.add('space');
         }
 
         phraseUL.appendChild(li);
@@ -123,13 +123,13 @@ const checkWin = () => {
     if (letters.length === showing.length) {
         setTimeout( () => {
             overlay.style.display = 'flex';
-            overlay.className = 'win';
+            overlay.classList.add('win');
             resetButton.style.display = 'block';
             title.innerText = 'You win!';
         }, 2000);
     } else if (missed > 4) {
         overlay.style.display = 'flex';
-        overlay.className = 'lose';
+        overlay.classList.add('lose');
         resetButton.style.display = 'block';
         title.innerText = 'You lose :(';
     }
@@ -183,7 +183,7 @@ qwerty.addEventListener('click', (e) => {
         } else {
             
             const test = checkLetter(btn[i].innerText.toUpperCase());
-            btn[i].className = 'chosen';
+            btn[i].classList.add('chosen');
 
             if (test === null) {
                 heartLost(missed);
