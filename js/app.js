@@ -1,14 +1,16 @@
 const qwerty = document.querySelector('#qwerty');
 const phrase = document.querySelector('#phrase');
 const startButton = document.querySelector('.btn__reset');
+const resetButton = document.querySelector('.btn__try-again');
 const phrases = [
-    ['Easy one'],
-    ['eee ee ee e eeee'],
-    ['O ya ya number three'],
-    ['one two three four'],
-    ['And my last one is mr five'],
+    ['one'],
+    ['one one'],
+    ['one'],
+    ['one'],
+    ['one'],
 ];
 let missed = 0;
+resetButton.style.display = 'none';
 
 // return a random phrase from an array
 const getRandomPhraseAsArray = arr => {
@@ -79,10 +81,12 @@ const checkWin = () => {
     if (letters.length === 0) {
         overlay.style.display = 'flex';
         overlay.className = 'win';
+        resetButton.style.display = 'block';
         title.innerText = 'You win!';
     } else if (missed > 4) {
         overlay.style.display = 'flex';
         overlay.className = 'lose';
+        resetButton.style.display = 'block';
         title.innerText = 'You lose :(';
     }
 
@@ -92,7 +96,34 @@ const checkWin = () => {
 // listen for the start game button to be pressed
 startButton.addEventListener('click', () => {
     const overlay = document.querySelector('#overlay');
+
     overlay.style.display = 'none';
+    startButton.style.display = 'none';
+
+    addPhraseToDisplay(phrases);
+});
+
+// listen for the reset game button to be pressed
+resetButton.addEventListener('click', () => {
+    const overlay = document.querySelector('#overlay');
+    const btn = document.querySelectorAll('.chosen');
+    const letters = document.querySelectorAll('.show');
+    const li = document.querySelectorAll('li');
+
+    for (let i = 0; i < btn.length; i++) {
+        btn[i].classList.remove('chosen');
+    }
+
+    for (let i = 0; i < li.length; i++) {
+        li[i].parentNode.removeChild(li[i]);
+
+    }
+
+    overlay.style.display = 'none';
+    resetButton.style.display = 'none';
+
+    missed = 0;
+
 
     addPhraseToDisplay(phrases);
 });
@@ -113,10 +144,7 @@ qwerty.addEventListener('click', e => {
             if (test === null) {
                 heartLost(missed);
                 missed++;
-                console.log(`You missed: ${missed} time(s)`);
-            } else  {
-                console.log('Correct!');
-            }
+            } 
         }
   
     }
