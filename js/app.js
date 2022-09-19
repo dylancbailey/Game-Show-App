@@ -92,7 +92,7 @@ const checkLetter = button => {
         let letter = checkLetter[i];
 
         if (button === letter.innerText) {
-            letter.className = 'show';
+            letter.classList.add('show');
             match = button;
         }
 
@@ -118,8 +118,9 @@ const checkWin = () => {
     const overlay = document.querySelector('#overlay');
     const title = document.querySelector('.title');
     const letters = document.querySelectorAll('.letter');
+    const showing = document.querySelectorAll('.show');
 
-    if (letters.length === 0) {
+    if (letters.length === showing.length) {
         setTimeout( () => {
             overlay.style.display = 'flex';
             overlay.className = 'win';
