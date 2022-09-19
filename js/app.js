@@ -1,21 +1,73 @@
 const qwerty = document.querySelector('#qwerty');
 const startButton = document.querySelector('.btn__reset');
 const resetButton = document.querySelector('.btn__try-again');
+// const phrases = [
+//     ['Bite the bullet'],
+//     ['Curiosity killed the cat'],
+//     ['Raining cats and dogs'],
+//     ['A Piece of Cake'],
+//     ['Two Peas In a Pod'],
+// ];
 const phrases = [
-    ['Bite the bullet'],
-    ['Curiosity killed the cat'],
-    ['Raining cats and dogs'],
-    ['A Piece of Cake'],
-    ['Two Peas In a Pod'],
+    {
+        question: '🧽🟨👖',
+        answer: 'Spongebob Squarepants'
+    },
+    {
+        question: '🎈🎈🏠',
+        answer: 'Up'
+    },
+    {
+        question: '🦉🪄⚡',
+        answer: 'Harry Potter'
+    },
+    {
+        question: '🦇👨',
+        answer: 'Batman'
+    },
+    {
+        question: '👩‍❤️‍👨🌕🐺',
+        answer: 'Twilight'
+    },
+    {
+        question: '👱🏻‍♀️🐇🍄🎩🐛',
+        answer: 'Alice In Wonderland'
+    },
+    {
+        question: '🏊‍♂️🦈',
+        answer: 'Jaws'
+    },
+    {
+        question: '❄️🚢👩‍❤️‍👨🚪',
+        answer: 'Titanic'
+    },
+    {
+        question: '🐕🍝🐩',
+        answer: 'Lady and the Tramp'
+    },
+    {
+        question: '🧙🏻‍♂️🤴💍🌋',
+        answer: 'The Lord of the Rings'
+    },
+    {
+        question: '🧑‍🔬💊🤷🏻‍♂️🚐',
+        answer: 'Breaking Bad'
+    }
 ];
 let missed = 0;
 resetButton.style.display = 'none';
 
 // return a random phrase from an array
 const getRandomPhraseAsArray = arr => {
-    const randomNumber = Math.floor(Math.random() * 5);
+    const header = document.querySelector('.header');
+    const randomNumber = Math.floor(Math.random() * 10);
     const randomArr = arr[randomNumber];
-    return randomArr;
+    const randomAnswer = randomArr.answer;
+    const randomQuestion = randomArr.question;
+
+    header.innerText = `${randomQuestion}`;
+
+    return randomAnswer;
 };
 
 // adds the letters of a string to the display
@@ -76,10 +128,12 @@ const checkWin = () => {
     const letters = document.querySelectorAll('.letter');
 
     if (letters.length === 0) {
-        overlay.style.display = 'flex';
-        overlay.className = 'win';
-        resetButton.style.display = 'block';
-        title.innerText = 'You win!';
+        setTimeout( () => {
+            overlay.style.display = 'flex';
+            overlay.className = 'win';
+            resetButton.style.display = 'block';
+            title.innerText = 'You win!';
+        }, 2000);
     } else if (missed > 4) {
         overlay.style.display = 'flex';
         overlay.className = 'lose';
