@@ -159,6 +159,7 @@ resetButton.addEventListener('click', () => {
     btn.forEach(e => {
         e.classList.remove('chosen');
         e.classList.remove('wrong');
+        e.style.animation = '';
     });
     li.forEach(e => {
         e.parentNode.removeChild(e)
@@ -190,7 +191,6 @@ qwerty.addEventListener('click', (e) => {
             const test = checkLetter(btn[i].innerText.toUpperCase());
             btn[i].classList.add('chosen');
 
-            // Not shaking when RESTATING GAME FIX IT
             if (test === null) {
                 btn[i].classList.add('wrong');
                 btn[i].style.animation = 'shake 0.5s';
