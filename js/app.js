@@ -1,7 +1,7 @@
-const qwerty = document.querySelector('#qwerty');
-const startButton = document.querySelector('.btn__reset');
-const resetButton = document.querySelector('.btn__try-again');
-const phrases = [
+const QWERTY = document.querySelector('#qwerty');
+const START_BUTTON = document.querySelector('.btn__reset');
+const RESET_BUTTON = document.querySelector('.btn__try-again');
+const PHRASES = [
     {
         question: '🧽🟨👖',
         answer: 'Spongebob Squarepants'
@@ -48,7 +48,7 @@ const phrases = [
     },
 ];
 let missed = 0;
-resetButton.style.display = 'none';
+RESET_BUTTON.style.display = 'none';
 
 // return a random phrase from an array
 const getRandomPhraseAsArray = arr => {
@@ -124,14 +124,14 @@ const checkWin = () => {
         setTimeout( () => {
             overlay.style.display = 'flex';
             overlay.classList.add('win');
-            resetButton.style.display = 'block';
+            RESET_BUTTON.style.display = 'block';
             title.innerText = 'You win!';
         }, 2000);
     } else if (missed > 4) {
         setTimeout( () => {
             overlay.style.display = 'flex';
             overlay.classList.add('lose');
-            resetButton.style.display = 'block';
+            RESET_BUTTON.style.display = 'block';
             title.innerText = 'You lose :(';
         }, 500)
     }
@@ -139,18 +139,18 @@ const checkWin = () => {
 
 
 // listen for the start game button to be pressed
-startButton.addEventListener('click', () => {
+START_BUTTON.addEventListener('click', () => {
     const overlay = document.querySelector('#overlay');
 
     overlay.style.display = 'none';
     overlay.classList.remove('start');
-    startButton.style.display = 'none';
+    START_BUTTON.style.display = 'none';
 
-    addPhraseToDisplay(phrases);
+    addPhraseToDisplay(PHRASES);
 });
 
 // listen for the reset game button to be pressed
-resetButton.addEventListener('click', () => {
+RESET_BUTTON.addEventListener('click', () => {
     const overlay = document.querySelector('#overlay');
     const btn = document.querySelectorAll('.chosen');
     const li = document.querySelectorAll('#phrase ul > li');
@@ -171,14 +171,14 @@ resetButton.addEventListener('click', () => {
     overlay.style.display = 'none';
     overlay.classList.remove('win');
     overlay.classList.remove('lose');
-    resetButton.style.display = 'none';
+    RESET_BUTTON.style.display = 'none';
     missed = 0;
 
-    addPhraseToDisplay(phrases);
+    addPhraseToDisplay(PHRASES);
 });
 
 // listen for the onscreen keyboard to be clicked
-qwerty.addEventListener('click', (e) => {
+QWERTY.addEventListener('click', (e) => {
     const btn = document.querySelectorAll('button');
 
     for (let i = 0; i < btn.length; i++) {
