@@ -47,7 +47,7 @@ const PHRASES = [
         answer: 'Breaking Bad'
     },
 ];
-let missed = 0;
+let MISSED = 0;
 RESET_BUTTON.style.display = 'none';
 
 // return a random phrase from an array
@@ -101,13 +101,13 @@ const checkLetter = button => {
 };
 
 // remove heart
-const heartLost = (missed) => {
+const heartLost = (MISSED) => {
     const hearts = document.querySelectorAll('.tries img');
 
     for (let i = 0; i < hearts.length; i++) {
         const heart = hearts[i];
 
-        if (missed === i) {
+        if (MISSED === i) {
             heart.src = 'images/lostHeart.png';
         }
     }
@@ -127,13 +127,13 @@ const checkWin = () => {
             RESET_BUTTON.style.display = 'block';
             title.innerText = 'You win!';
         }, 2000);
-    } else if (missed > 4) {
+    } else if (MISSED > 4) {
         setTimeout( () => {
             overlay.style.display = 'flex';
             overlay.classList.add('lose');
             RESET_BUTTON.style.display = 'block';
             title.innerText = 'You lose :(';
-        }, 500)
+        }, 5000)
     }
 };
 
@@ -172,7 +172,7 @@ RESET_BUTTON.addEventListener('click', () => {
     overlay.classList.remove('win');
     overlay.classList.remove('lose');
     RESET_BUTTON.style.display = 'none';
-    missed = 0;
+    MISSED = 0;
 
     addPhraseToDisplay(PHRASES);
 });
@@ -194,8 +194,8 @@ QWERTY.addEventListener('click', (e) => {
             if (test === null) {
                 btn[i].classList.add('wrong');
                 btn[i].style.animation = 'shake 0.5s';
-                heartLost(missed);
-                missed++;
+                heartLost(MISSED);
+                MISSED++;
             }
         }
 
