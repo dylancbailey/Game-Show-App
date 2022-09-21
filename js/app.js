@@ -188,10 +188,10 @@ QWERTY.addEventListener('click', (e) => {
             // console.log(e.target);
         } else {
             
-            const test = checkLetter(btn[i].innerText.toUpperCase());
+            const letter = checkLetter(btn[i].innerText.toUpperCase());
             btn[i].classList.add('chosen');
 
-            if (test === null) {
+            if (letter === null) {
                 btn[i].classList.add('wrong');
                 btn[i].style.animation = 'shake 0.5s';
                 heartLost(MISSED);
