@@ -126,14 +126,14 @@ const checkWin = () => {
             overlay.classList.add('win');
             RESET_BUTTON.style.display = 'block';
             title.innerText = 'You win!';
-        }, 2000);
+        }, 1500);
     } else if (MISSED > 4) {
         setTimeout( () => {
             overlay.style.display = 'flex';
             overlay.classList.add('lose');
             RESET_BUTTON.style.display = 'block';
             title.innerText = 'You lose :(';
-        }, 5000)
+        }, 400)
     }
 };
 
