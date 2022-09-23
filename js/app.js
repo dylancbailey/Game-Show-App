@@ -160,6 +160,7 @@ RESET_BUTTON.addEventListener('click', () => {
         e.classList.remove('chosen');
         e.classList.remove('wrong');
         e.style.animation = '';
+        e.disabled = false;
     });
     li.forEach(e => {
         e.parentNode.removeChild(e)
@@ -179,26 +180,20 @@ RESET_BUTTON.addEventListener('click', () => {
 
 // listen for the onscreen keyboard to be clicked
 QWERTY.addEventListener('click', (e) => {
-    const btn = document.querySelectorAll('button');
 
-    for (let i = 0; i < btn.length; i++) {
+    const btn = e.target;
+    const letter = checkLetter(btn.innerText.toUpperCase());
 
-        if (e.target !== btn[i] || btn[i].className === 'chosen') {
-            // console.log('Not a button or proper class');
-            // console.log(e.target);
-        } else {
-            
-            const letter = checkLetter(btn[i].innerText.toUpperCase());
-            btn[i].classList.add('chosen');
+    if (btn.tagName === "BUTTON") {
+        btn.classList.add("chosen");
+        btn.disabled = true;
+    }
 
-            if (letter === null) {
-                btn[i].classList.add('wrong');
-                btn[i].style.animation = 'shake 0.5s';
-                heartLost(MISSED);
-                MISSED++;
-            }
-        }
-
+    if (letter === null) {
+        btn.classList.add("wrong");
+        btn.style.animation = "shake 0.5s";
+        heartLost(MISSED);
+        MISSED++;
     }
 
     checkWin();
